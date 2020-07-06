@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.guo.test.dao.RuleRepository">
+    
+    <resultMap id="baseResultMap" type="com.guo.test.bean.Rule">
+        <result column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+    
+    <insert id="add">
+        INSERT INTO tb_rule (name)
+        VALUES (
+        #{name,jdbcType=VARCHAR}
+        )
+    </insert>
+   
+    <select id="list" resultMap="baseResultMap">
+        SELECT u.* FROM tb_rule u
+    </select>
+	
+	<select id="findById" resultMap="baseResultMap">
+        SELECT u.* FROM tb_rule u WHERE u.id=#{id,jdbcType=INTEGER}
+    </select>
+    
+    <select id="findByName" resultMap="baseResultMap">
+        SELECT u.* FROM tb_rule u WHERE u.name=#{name,jdbcType=VARCHAR}
+    </select>
+    
+</mapper>
